@@ -1311,12 +1311,25 @@
         // ========== QR CODE ==========
         function genererQRCode(numero) {
             const qrContainer = document.getElementById('qrcode');
-            const lienWave = 'https://ndongoms2e.github.io/dahira-cotisation/?membre=' + numero;
+            
+            // Récupérer les infos du membre
+            const nom = document.getElementById('cardNom').textContent;
+            const telephone = document.getElementById('cardTelephone').textContent;
+            
+            // Séparer prénom et nom (si format "Prénom Nom")
+            const nomParts = nom.split(' ');
+            const prenom = nomParts[0] || '';
+            const nomFamille = nomParts.slice(1).join(' ') || '';
+            
+            // Créer l'URL avec les paramètres
+            const baseUrl = 'https://ndongoms2e.github.io/dahira-cotisation/';
+            const params = `?prenom=${encodeURIComponent(prenom)}&nom=${encodeURIComponent(nomFamille)}&tel=${encodeURIComponent(telephone)}`;
+            const lienCotisation = baseUrl + params;
             
             qrContainer.innerHTML = '';
             
             new QRCode(qrContainer, {
-                text: lienWave,
+                text: lienCotisation,
                 width: 128,
                 height: 128,
                 colorDark: '#006400',
