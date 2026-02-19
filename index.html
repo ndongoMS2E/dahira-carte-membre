@@ -891,7 +891,7 @@
 <body>
     <!-- HEADER -->
     <header class="app-header">
-        <img src="logo.png" alt="Logo DBWI" onerror="this.style.display='none'">
+        <img src="images/logo.png" alt="Logo DBWI" onerror="this.style.display='none'">
         <div>
             <h1>Diamyatoul Birri Wal Islah</h1>
             <p>Système de gestion des cartes membres</p>
@@ -1014,7 +1014,7 @@
                             <!-- Photo du guide + QR Code -->
                             <div class="bottom-icons">
                                 <div class="guide-photo">
-                                    <img src="guide.png" alt="Guide" onerror="this.parentElement.innerHTML='🕌'">
+                                    <img src="images/guide.png" alt="Guide" onerror="this.parentElement.innerHTML='🕌'">
                                 </div>
                                 <div class="qr-container" id="qrcode"></div>
                             </div>
@@ -1311,25 +1311,12 @@
         // ========== QR CODE ==========
         function genererQRCode(numero) {
             const qrContainer = document.getElementById('qrcode');
-            
-            // Récupérer les infos du membre
-            const nom = document.getElementById('cardNom').textContent;
-            const telephone = document.getElementById('cardTelephone').textContent;
-            
-            // Séparer prénom et nom (si format "Prénom Nom")
-            const nomParts = nom.split(' ');
-            const prenom = nomParts[0] || '';
-            const nomFamille = nomParts.slice(1).join(' ') || '';
-            
-            // Créer l'URL avec les paramètres
-            const baseUrl = 'https://ndongoms2e.github.io/dahira-cotisation/';
-            const params = `?numero=${encodeURIComponent(numero)}&prenom=${encodeURIComponent(prenom)}&nom=${encodeURIComponent(nomFamille)}&tel=${encodeURIComponent(telephone)}`;
-            const lienCotisation = baseUrl + params;
+            const lienWave = 'https://pay.wave.com/m/M_sn_0WdGh370xGcP/c/sn/';
             
             qrContainer.innerHTML = '';
             
             new QRCode(qrContainer, {
-                text: lienCotisation,
+                text: lienWave,
                 width: 128,
                 height: 128,
                 colorDark: '#006400',
